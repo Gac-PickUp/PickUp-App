@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">PickUp</string>
     <string name="email">User email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
     <string name="gac_logo">GAC logo</string>
     <string name="forgot_password">Forgot password</string>
-
-
-
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="landingPageWelcome">Pickup Time!</string>
 
 </resources>
