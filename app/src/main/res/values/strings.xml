@@ -14,5 +14,10 @@
     <string name="last_name">Lastname</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="title_activity_sign_up_page">SignUpPage</string>
+    <string name="title_activity_password_reset">PasswordResetActivity</string>
+    <string name="enter_email">Enter your email to reset password</string>
+    <string name="reset_password_btn">Reset Password</string>
+
+
 
 </resources>
