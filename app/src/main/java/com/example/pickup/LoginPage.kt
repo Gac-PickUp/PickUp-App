@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -15,6 +16,7 @@ class LoginPage : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var emailInput: EditText
     private lateinit var passwordInput: EditText
+    private lateinit var forgotPassword: TextView
     private lateinit var loginButton: Button
     private lateinit var signUpButton: Button
 
@@ -29,6 +31,14 @@ class LoginPage : AppCompatActivity() {
         passwordInput = findViewById(R.id.password_input)
         loginButton = findViewById(R.id.login_btn)
         signUpButton = findViewById(R.id.signup_btn)
+        forgotPassword = findViewById(R.id.forgot_password)
+
+
+        forgotPassword.setOnClickListener {
+            // Launch the passwordResetActivity activity
+            startActivity(Intent(this, PasswordResetActivity::class.java))
+        }
+
 
         loginButton.setOnClickListener {
             val email = emailInput.text.toString()
