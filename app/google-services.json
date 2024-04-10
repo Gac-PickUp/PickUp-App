@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796999334440",
+    "project_id": "loginpage-9ec02",
+    "storage_bucket": "loginpage-9ec02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796999334440:android:8d0391a1a79aa82f3b131d",
+        "android_client_info": {
+          "package_name": "com.example.pickup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0thtXh2__PeKLxGcDWc5MuA7mz1w0cHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
