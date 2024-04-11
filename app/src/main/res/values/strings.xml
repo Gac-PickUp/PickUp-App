@@ -15,4 +15,22 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="title_activity_sign_up_page">SignUpPage</string>
 
+
+    <string name="game_form_title">Create a Game</string>
+    <string name="choose_sport">Choose a Sport</string>
+    <string name="location">Location</string>
+    <string name="min_players_text">Min Players</string>
+    <string name="max_players_text">Max Players</string>
+    <string name="team_or_open_text">Choose a Team or Open Play</string>
+    <string name="time_text">Time</string>
+    <string name="date_text">Date</string>
+    <string name="create_game_text">Create Game</string>
+
+    <string-array name="sports_list">
+        <item>Soccer</item>
+        <item>Basketball</item>
+        <item>Volleyball</item>
+        <item>Pickleball</item>
+    </string-array>
+
 </resources>
