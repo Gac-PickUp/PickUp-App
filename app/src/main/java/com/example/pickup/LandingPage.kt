@@ -40,7 +40,7 @@ class LandingPage : AppCompatActivity() {
         loading.start()
         animator.start()
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginPage::class.java)
             startActivity(intent)
             finish()  // Finish the SplashScreen activity to prevent it from being shown again when back button is pressed
         }, 4000) // Delay duration equals to animation duration plus start delay

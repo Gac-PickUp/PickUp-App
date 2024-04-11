@@ -1,9 +1,23 @@
 <resources>
     <string name="app_name">PickUp</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="gac_logo">GAC logo</string>
+    <string name="forgot_password">Forgot password</string>
     <string name="landingPageWelcome">Pickup Time!</string>
+    <string name="title_activity_login_page">LoginPage</string>
+    <string name="next">Next</string>
+    <string name="create_account_btn">Create Account</string>
+    <string name="first_name">Firstname</string>
+    <string name="last_name">Lastname</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="title_activity_sign_up_page">SignUpPage</string>
+    <string name="title_activity_password_reset">PasswordResetActivity</string>
+    <string name="enter_email">Enter your email to reset password</string>
+    <string name="reset_password_btn">Reset Password</string>
+
 
 
 </resources>
