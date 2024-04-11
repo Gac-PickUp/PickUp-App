@@ -7,58 +7,98 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.pickup.databinding.ActivityCreateGameBinding
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import java.util.Calendar
 import java.util.Locale
 
 class CreateGameActivity : AppCompatActivity() {
-
-    lateinit var timeButton: Button
-    lateinit var dateButton: Button
+    private lateinit var binding: ActivityCreateGameBinding
     var hour: Int = 0
     var minute: Int = 0
     private val calendar = Calendar.getInstance()
+
+    val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
 
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_game)
-        timeButton = findViewById(R.id.timeButton)
-        dateButton = findViewById(R.id.dateButton)
+        binding = ActivityCreateGameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+        // Creating the dropdown menu for choosing a sport
+        val sports = resources.getStringArray(R.array.sports_list)
+
+        val sportsArrayAdapter = ArrayAdapter(this, R.layout.activity_dropdown_item, sports)
+
+        val autocompleteTV = findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
+
+        autocompleteTV.setAdapter(sportsArrayAdapter)
+
+        //Creating the dropdown menu for choosing a group or public
+        val groupsList = resources.getStringArray(R.array.groups_choice_list)
+
+        val groupsArrayAdapter = ArrayAdapter(this, R.layout.activity_dropdown_item, groupsList)
+
+        val groupsAutocomplete = findViewById<AutoCompleteTextView>(R.id.chooseTeamAutoComplete)
+
+        groupsAutocomplete.setAdapter(groupsArrayAdapter)
 
 
 
+        binding.createGameButton.setOnClickListener{view ->
+            val gameInfo = hashMapOf(
+                "sport" to binding.autoCompleteTextView.text.toString(),
+                "location" to binding.locationText.text.toString(),
+                "minPlayers" to binding.minPlayersText.text.toString().toIntOrNull(),
+                "maxPlayers" to binding.maxPlayersText.text.toString().toIntOrNull(),
+                "date" to binding.dateButton.text.toString(),
+                "time" to binding.timeButton.text.toString(),
+                "team" to binding.chooseTeamAutoComplete.text.toString()
+            )
 
-        timeButton.setOnClickListener { view ->
-            // Do some work here
+            db.collection("games")
+                .add(gameInfo)
+                .addOnSuccessListener { documentReference ->
+                    Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Failed to create game", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+
+
+        binding.timeButton.setOnClickListener { view ->
+
             popTimePicker(view)
         }
-        // on below line we are initializing our variables.
 
-        // on below line we are adding
         // click listener for our button
-        dateButton.setOnClickListener {
-            // on below line we are getting
-            // the instance of our calendar.
+        binding.dateButton.setOnClickListener {
+
             val c = Calendar.getInstance()
 
-            // on below line we are getting
+
             // our day, month and year.
             val year = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
 
-            // on below line we are creating a
-            // variable for date picker dialog.
+
             val datePickerDialog = DatePickerDialog(
                 // on below line we are passing context.
                 this,
                 { view, year, monthOfYear, dayOfMonth ->
                     // on below line we are setting
                     // date to our text view.
-                    dateButton.text =
+                    binding.dateButton.text =
                         (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
                 },
                 // on below line we are passing year, month
@@ -67,24 +107,9 @@ class CreateGameActivity : AppCompatActivity() {
                 month,
                 day
             )
-            // at last we are calling show
             // to display our date picker dialog.
             datePickerDialog.show()
         }
-
-
-
-
-        val sports = resources.getStringArray(R.array.sports_list)
-
-        val arrayAdapter = ArrayAdapter(this, R.layout.activity_dropdown_item, sports)
-
-        val autocompleteTV = findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
-
-        autocompleteTV.setAdapter(arrayAdapter)
-
-
-
 
 
     }
@@ -94,12 +119,10 @@ class CreateGameActivity : AppCompatActivity() {
         val onTimeSetListener = TimePickerDialog.OnTimeSetListener { _, selectedHour, selectedMinute ->
             hour = selectedHour
             minute = selectedMinute
-            timeButton.text = String.format(Locale.getDefault(), "%02d:%02d", hour, minute)
+            binding.timeButton.text = String.format(Locale.getDefault(), "%02d:%02d", hour, minute)
         }
 
-        // val style = AlertDialog.THEME_HOLO_DARK
-
-        val timePickerDialog = TimePickerDialog(this, /*style,*/ onTimeSetListener, hour, minute, true)
+        val timePickerDialog = TimePickerDialog(this, /*style,*/ onTimeSetListener, hour, minute, false)
         timePickerDialog.setTitle("Select Time")
         timePickerDialog.show()
     }

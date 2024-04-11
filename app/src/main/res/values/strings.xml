@@ -33,4 +33,8 @@
         <item>Pickleball</item>
     </string-array>
 
+    <string-array name="groups_choice_list">
+        <item>Public</item>
+    </string-array>
+
 </resources>
