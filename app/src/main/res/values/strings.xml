@@ -17,6 +17,8 @@
     <string name="title_activity_password_reset">PasswordResetActivity</string>
     <string name="enter_email">Enter your email to reset password</string>
     <string name="reset_password_btn">Reset Password</string>
+    <string name="reset_back_btn">Back</string>
+    <string name="forgot_password_text">Forgot Password</string>
 
 
 
