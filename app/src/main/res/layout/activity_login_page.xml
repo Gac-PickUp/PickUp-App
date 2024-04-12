@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/login_background"
     android:layout_gravity="center"
-    android:padding="16dp"
-    >
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_marginTop="100dp"
@@ -18,10 +17,11 @@
 
 
         <ImageView
-            android:layout_width="138dp"
+            android:layout_width="wrap_content"
             android:layout_height="136dp"
-            android:contentDescription="@string/gac_logo"
-            android:src="@drawable/gac" />
+            android:src="@drawable/logo"
+
+            />
 
         <EditText
             android:id="@+id/email_input"
@@ -37,29 +37,45 @@
 
             />
 
-        <EditText
-            android:id="@+id/password_input"
+        <com.google.android.material.textfield.TextInputLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:background="@drawable/rounded_edit_text"
             android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="18dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            app:passwordToggleEnabled="true">
 
-            />
+         <com.google.android.material.textfield.TextInputEditText
+             android:id="@+id/password_input"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/rounded_edit_text"
+             android:inputType="textPassword"
+             android:padding="18dp"
+             android:textColor="@color/black"
+             android:textSize="20sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/forgot_password"
             android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:height="48dp"
             android:layout_gravity="end"
             android:text="@string/forgot_password"
             android:textColor="@color/black"
-            android:focusable="true" />
+            android:focusable="true"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
 
         <Button
