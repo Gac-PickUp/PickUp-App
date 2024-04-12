@@ -156,6 +156,7 @@
         android:onClick="popTimePicker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseTeamOrOpen"
+        android:textColor="@color/black"
         android:backgroundTint="#99D98C"
         android:hint="@string/time_text"
         >
@@ -173,6 +174,7 @@
         android:onClick="popDatePicker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseTeamOrOpen"
+        android:textColor="@color/black"
         android:backgroundTint="#99D98C"
         android:hint="@string/date_text"
         >
