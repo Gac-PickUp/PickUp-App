@@ -2,8 +2,10 @@ package com.example.pickup
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +22,8 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var passwordInput: EditText
     private lateinit var confirmPasswordInput: EditText
     private lateinit var signUpButton: Button
+    private lateinit var progressBar: ProgressBar
+    private lateinit var backButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +31,23 @@ class SignUpActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-
         firstNameInput = findViewById(R.id.first_name_input)
         lastNameInput = findViewById(R.id.last_name_input)
         emailInput = findViewById(R.id.email_input)
         passwordInput = findViewById(R.id.password_input)
         confirmPasswordInput = findViewById(R.id.confirm_password_input)
         signUpButton = findViewById(R.id.sign_up_btn)
+        progressBar = findViewById(R.id.progressBar)
+        backButton = findViewById(R.id.back_btn)
+
+
+        backButton.setOnClickListener {
+            startActivity(Intent(this, LoginPage::class.java))
+        }
+
 
         signUpButton.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             val firstName = firstNameInput.text.toString()
             val lastName = lastNameInput.text.toString()
             val email = emailInput.text.toString()
@@ -58,9 +70,10 @@ class SignUpActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    progressBar.visibility = View.GONE
                     // Sign up success, update UI with the signed-up user's information
                     val user = auth.currentUser
-                    // Proceed to the next activity (e.g., Dashboard)
+
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
