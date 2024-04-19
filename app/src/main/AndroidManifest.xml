@@ -12,16 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PickUp"
         tools:targetApi="31">
+
         <activity
             android:name=".PasswordResetActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_password_reset"
-            android:theme="@style/Theme.PickUp" />
+            android:theme="@style/Theme.PickUp"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SignUpActivity"
             android:exported="true"
             android:label="@string/title_activity_sign_up_page"
-            android:theme="@style/Theme.PickUp" />
+            android:theme="@style/Theme.PickUp"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".LandingPage"
             android:exported="true"
@@ -36,12 +39,19 @@
             android:name=".LoginPage"
             android:exported="true"
             android:label="@string/title_activity_login_page"
-            android:theme="@style/Theme.PickUp" />
+            android:theme="@style/Theme.PickUp"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="MainActivity"
             android:theme="@style/Base.Theme.PickUp" />
+        <activity
+            android:name=".CreateGameActivity"
+            android:exported="true"
+            android:label="CreateGame"
+            android:theme="@style/Base.Theme.PickUp"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
