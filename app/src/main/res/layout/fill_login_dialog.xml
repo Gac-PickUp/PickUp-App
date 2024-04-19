@@ -6,11 +6,12 @@
     android:gravity="center"
     android:padding="16dp">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please enter email and password"
-        android:textColor="@color/light_green"
+        android:text="@string/fill_login_message"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
 </LinearLayout>

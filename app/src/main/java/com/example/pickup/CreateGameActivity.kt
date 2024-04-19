@@ -24,13 +24,9 @@ class CreateGameActivity : AppCompatActivity() {
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
-
-
         super.onCreate(savedInstanceState)
         binding = ActivityCreateGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         // Creating the dropdown menu for choosing a sport
         val sports = resources.getStringArray(R.array.sports_list)
