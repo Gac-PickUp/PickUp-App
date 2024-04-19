@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pickup.databinding.ActivityCreateGameBinding
 import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import java.util.Calendar
 import java.util.Locale
@@ -52,8 +53,15 @@ class CreateGameActivity : AppCompatActivity() {
 
 
 
+
+        val user = Firebase.auth.currentUser
+        val uid = user?.uid
         binding.createGameButton.setOnClickListener{view ->
+            val newGameRef = db.collection("games").document()
+
             val gameInfo = hashMapOf(
+                "authorID" to uid,
+                "title" to binding.titleText.text.toString(),
                 "sport" to binding.autoCompleteTextView.text.toString(),
                 "location" to binding.locationText.text.toString(),
                 "minPlayers" to binding.minPlayersText.text.toString().toIntOrNull(),
@@ -62,15 +70,22 @@ class CreateGameActivity : AppCompatActivity() {
                 "time" to binding.timeButton.text.toString(),
                 "team" to binding.chooseTeamAutoComplete.text.toString()
             )
+            val playerinfo = hashMapOf(
+                "playerID" to uid
+            )
 
-            db.collection("games")
-                .add(gameInfo)
+            newGameRef
+                .set(gameInfo)
                 .addOnSuccessListener { documentReference ->
                     Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
+                    if (uid != null) {
+                        newGameRef.collection("playerID").add(playerinfo)
+                    }
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to create game", Toast.LENGTH_SHORT).show()
                 }
+
         }
 
 

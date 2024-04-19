@@ -46,6 +46,19 @@ class SignUpActivity : AppCompatActivity() {
         }
 
 
+        /*
+        TODO
+
+        When signing up user add them to the "players" collection in the database
+        Can use their email as a uid
+        have properties like name etc.
+        have subcollection of games that they are signed up for called "gamesIn"
+            This subcollection will be empty and be populated when a user either creates a game or joins a game
+            It will be populated by gameIDs
+            When viewing a user's profile and clicking "My Games" show this list
+
+         */
+
         signUpButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             val firstName = firstNameInput.text.toString()
