@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/create_game_gradient"
+    android:background="@drawable/login_background"
     >
 
     <TextView
@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -68,6 +68,8 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:hint="@string/choose_sport"
+
+
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -164,6 +166,7 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:hint="@string/team_or_open_text"
+
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -183,6 +186,7 @@
         android:textColor="@color/black"
         android:backgroundTint="#99D98C"
         android:hint="@string/time_text"
+
         >
 
     </Button>
@@ -200,6 +204,7 @@
         app:layout_constraintTop_toBottomOf="@+id/chooseTeamOrOpen"
         android:textColor="@color/black"
         android:backgroundTint="#99D98C"
+        android:textColor="@color/black"
         android:hint="@string/date_text"
         >
 
@@ -245,9 +250,10 @@
         android:layout_marginBottom="20dp"
         android:id="@+id/createGameButton"
         android:text="@string/create_game_text"
-        android:textColor="@color/black"
-        android:backgroundTint="#87CEEB"
-        >
+        android:textColor="@color/light_green"
+        android:background="@drawable/round_btn"
+        android:backgroundTint="@color/black"
+        android:textSize="20dp">
 
     </Button>
 

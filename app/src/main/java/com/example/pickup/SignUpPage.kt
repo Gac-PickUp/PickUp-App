@@ -1,12 +1,15 @@
 package com.example.pickup
 
 import android.content.Intent
+
+
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -75,10 +78,30 @@ class SignUpActivity : AppCompatActivity() {
                 if (password == confirmPassword) {
                     signUpUser(firstName, lastName, email, password)
                 } else {
-                    Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                    val dialogView = layoutInflater.inflate(R.layout.unmatch_password_dialog, null)
+
+                    // Create a dialog and set its content view
+                    val builder = AlertDialog.Builder(this)
+                    builder.setView(dialogView)
+                    val dialog = builder.create()
+
+                    // Show the dialog
+                    dialog.show()
+                    progressBar.visibility = View.GONE
                 }
             } else {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                val dialogView = layoutInflater.inflate(R.layout.fill_signup_dialog, null)
+
+                // Create a dialog and set its content view
+                val builder = AlertDialog.Builder(this)
+                builder.setView(dialogView)
+                val dialog = builder.create()
+
+                // Show the dialog
+                dialog.show()
+                progressBar.visibility = View.GONE
             }
         }
     }
@@ -91,6 +114,7 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign up success, update UI with the signed-up user's information
                     val user = auth.currentUser
 
+                    startActivity(Intent(this, CreateGameActivity::class.java))
                     val newUserRef = db.collection("players").document()
 
                     val playerInfo = hashMapOf(
@@ -114,6 +138,7 @@ class SignUpActivity : AppCompatActivity() {
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
+                    progressBar.visibility = View.GONE
                     // If sign up fails, display a message to the user.
                     try {
                         throw task.exception!!
