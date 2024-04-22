@@ -13,6 +13,15 @@
         android:theme="@style/Theme.PickUp"
         tools:targetApi="31">
 
+
+        <activity
+            android:name=".ViewGameActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".GameRecyclerView"
+            android:exported="true" />
+
         <activity
             android:name=".PasswordResetActivity"
             android:exported="true"
