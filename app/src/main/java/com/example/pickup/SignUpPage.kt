@@ -8,10 +8,12 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.firestore.firestore
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -24,6 +26,8 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var signUpButton: Button
     private lateinit var progressBar: ProgressBar
     private lateinit var backButton: Button
+
+    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +90,26 @@ class SignUpActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                     // Sign up success, update UI with the signed-up user's information
                     val user = auth.currentUser
+
+                    val newUserRef = db.collection("players").document()
+
+                    val playerInfo = hashMapOf(
+                        "email" to user?.email.toString(),
+                        "firstName" to firstName,
+                        "lastName" to lastName
+                    )
+
+                    newUserRef
+                        .set(playerInfo)
+                        .addOnSuccessListener { documentReference ->
+                            Toast.makeText(this, "Player Created Successfully", Toast.LENGTH_SHORT).show()
+                                newUserRef.collection("gamesIn")
+
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Failed to create player", Toast.LENGTH_SHORT).show()
+                        }
+
 
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()

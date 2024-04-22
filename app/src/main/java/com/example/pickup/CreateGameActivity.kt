@@ -3,19 +3,21 @@ package com.example.pickup
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pickup.databinding.ActivityCreateGameBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.AggregateSource
 import com.google.firebase.firestore.firestore
 import java.util.Calendar
 import java.util.Locale
 
+private val TAG: String = CreateGameActivity::class.java.getName()
 class CreateGameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateGameBinding
     var hour: Int = 0
@@ -32,7 +34,7 @@ class CreateGameActivity : AppCompatActivity() {
         binding = ActivityCreateGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        //updatePlayerCount()
         // Creating the dropdown menu for choosing a sport
         val sports = resources.getStringArray(R.array.sports_list)
 
@@ -52,10 +54,45 @@ class CreateGameActivity : AppCompatActivity() {
         groupsAutocomplete.setAdapter(groupsArrayAdapter)
 
 
-
-
         val user = Firebase.auth.currentUser
         val uid = user?.uid
+
+
+        // Test for letting user join a game
+
+        /*
+        binding.testAddButton.setOnClickListener { view ->
+            val playerQueryRef = db.collection("games").document("game1").collection("playerIDs")
+
+            val playerQuery = playerQueryRef.whereEqualTo("playerID", uid)
+
+            if (playerQuery == null) {
+                val data = hashMapOf(
+                    "playerID" to uid
+                )
+                db.collection("games").document("game1").collection("playerIDs")
+                    .add(data)
+                    .addOnSuccessListener { documentReference ->
+                        Toast.makeText(this, "Player joined successfully", Toast.LENGTH_SHORT)
+                            .show()
+                        updatePlayerCount()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "PLayer failed to join game", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+            }
+            else{
+                Toast.makeText(this, "This player already exists", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+         */
+
+
+
+
+
         binding.createGameButton.setOnClickListener{view ->
             val newGameRef = db.collection("games").document()
 
@@ -141,6 +178,31 @@ class CreateGameActivity : AppCompatActivity() {
         timePickerDialog.setTitle("Select Time")
         timePickerDialog.show()
     }
+
+
+    /*
+    fun updatePlayerCount(){
+        val testQuery = db.collection("games").document("game1").collection("playerIDs")
+
+        val countQuery = testQuery.count()
+
+
+        countQuery.get(AggregateSource.SERVER).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // Count fetched successfully
+                val snapshot = task.result
+                Log.d(TAG, "Count: ${snapshot.count}")
+                binding.testPlayerCount.text = "${snapshot.count}"
+            } else {
+                Log.d(TAG, "Count failed: ", task.getException())
+            }
+
+
+        }
+
+    }
+
+     */
 
 
 
