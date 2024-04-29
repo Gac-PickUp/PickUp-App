@@ -18,9 +18,6 @@
             android:name=".ViewGameActivity"
             android:exported="true" />
 
-        <activity
-            android:name=".ViewGameActivity"
-            android:exported="true" />
 
         <activity
             android:name=".PasswordResetActivity"

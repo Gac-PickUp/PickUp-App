@@ -8,7 +8,9 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isNotEmpty
 import com.example.pickup.databinding.ActivityCreateGameBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -62,8 +64,26 @@ class CreateGameActivity : AppCompatActivity() {
             db.collection("games")
                 .add(gameInfo)
                 .addOnSuccessListener { documentReference ->
-                    Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, ViewGameActivity::class.java))
+                    if (binding.autoCompleteTextView.text.isNotEmpty() && binding.locationText.text.isNotEmpty()
+                        && binding.minPlayers.isNotEmpty() &&
+                        binding.maxPlayers.isNotEmpty() && binding.dateButton.text.isNotEmpty() &&
+                        binding.timeButton.text.isNotEmpty() and binding.chooseTeamAutoComplete.text.isNotEmpty()) {
+
+                        Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, ViewGameActivity::class.java))
+                    }
+                    else{
+                        val dialogView = layoutInflater.inflate(R.layout.fill_create_game_form, null)
+
+                        // Create a dialog and set its content view
+                        val builder = AlertDialog.Builder(this)
+                        builder.setView(dialogView)
+                        val dialog = builder.create()
+
+                        // Show the dialog
+                        dialog.show()
+                    }
+
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to create game", Toast.LENGTH_SHORT).show()

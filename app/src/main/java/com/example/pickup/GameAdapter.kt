@@ -1,9 +1,12 @@
 package com.example.pickup
 
+
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
@@ -24,30 +27,34 @@ class GameAdapter(private val games: List<Map<String, Any>>) : RecyclerView.Adap
 
 
 
-        fun bind(game: Map<String, Any>) {
-            sportTextView.text = game["sport"].toString()
-            locationTextView.text = game["location"].toString()
-            minPlayersTextView.text = game["minPlayers"].toString()
-            maxPlayersTextView.text = game["maxPlayers"].toString()
-            dateTextView.text = game["date"].toString()
-            timeTextView.text = game["time"].toString()
-            teamTextView.text = game["team"].toString()
+
+            fun bind(game: Map<String, Any>) {
+                sportTextView.text = game["sport"].toString()
+                locationTextView.text = game["location"].toString()
+                minPlayersTextView.text = game["minPlayers"].toString()
+                maxPlayersTextView.text = game["maxPlayers"].toString()
+                dateTextView.text = game["date"].toString()
+                timeTextView.text = game["time"].toString()
+                teamTextView.text = game["team"].toString()
+            }
         }
-    }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.activity_game_adaptor, parent, false)
-        return GameViewHolder(itemView)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
+            val itemView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.activity_game_adaptor, parent, false)
+            return GameViewHolder(itemView)
+        }
+
+        override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
+            holder.bind(games[position])
+        }
+
+        override fun getItemCount(): Int {
+            return games.size
+        }
+
     }
 
-    override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-        holder.bind(games[position])
-    }
-
-    override fun getItemCount(): Int {
-        return games.size
-    }
-}
 
 
