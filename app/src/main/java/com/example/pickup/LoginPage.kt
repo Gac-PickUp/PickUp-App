@@ -8,11 +8,10 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class LoginPage : AppCompatActivity() {
 
@@ -23,6 +22,18 @@ class LoginPage : AppCompatActivity() {
     private lateinit var loginButton: Button
     private lateinit var signUpButton: Button
     private lateinit var progressBar: ProgressBar
+
+//    public override fun onStart() {
+//        super.onStart()
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        val currentUser = auth.currentUser
+//        if (currentUser != null) {
+//            startActivity(Intent(this, CreateGameActivity::class.java))
+//            finish()
+//        }
+//    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +62,20 @@ class LoginPage : AppCompatActivity() {
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 loginUser(email, password)
+
             } else {
-                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+                progressBar.visibility = View.GONE
+               // Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+
+                val dialogView = layoutInflater.inflate(R.layout.fill_login_dialog, null)
+
+                // Create a dialog and set its content view
+                val builder = AlertDialog.Builder(this)
+                builder.setView(dialogView)
+                val dialog = builder.create()
+
+                // Show the dialog
+                dialog.show()
             }
         }
 
@@ -70,11 +93,21 @@ class LoginPage : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
 
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, CreateGameActivity::class.java))
                     finish()
                 } else {
+                    progressBar.visibility = View.GONE
                     // If sign in fails, display a message to the user.
-                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(baseContext, "Incorrect email or password", Toast.LENGTH_SHORT).show()
+                    val dialogView = layoutInflater.inflate(R.layout.incorrect_login_dialog, null)
+
+                    // Create a dialog and set its content view
+                    val builder = AlertDialog.Builder(this)
+                    builder.setView(dialogView)
+                    val dialog = builder.create()
+
+                    // Show the dialog
+                    dialog.show()
                 }
             }
     }

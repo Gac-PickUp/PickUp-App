@@ -2,11 +2,11 @@ package com.example.pickup
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pickup.databinding.ActivityCreateGameBinding
@@ -24,13 +24,9 @@ class CreateGameActivity : AppCompatActivity() {
     val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
-
-
         super.onCreate(savedInstanceState)
         binding = ActivityCreateGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         // Creating the dropdown menu for choosing a sport
         val sports = resources.getStringArray(R.array.sports_list)
@@ -67,6 +63,7 @@ class CreateGameActivity : AppCompatActivity() {
                 .add(gameInfo)
                 .addOnSuccessListener { documentReference ->
                     Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, ViewGameActivity::class.java))
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to create game", Toast.LENGTH_SHORT).show()

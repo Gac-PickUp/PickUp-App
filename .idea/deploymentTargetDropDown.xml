@@ -2,17 +2,33 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="CreateGameActivity">
+        <State />
+      </entry>
+      <entry key="GameRecyclerView">
+        <State />
+      </entry>
       <entry key="LoginPage">
         <State />
       </entry>
-      <entry key="MainActivity">
+      <entry key="Try">
         <State />
       </entry>
-      <entry key="PasswordResetActivity">
-        <State />
-      </entry>
-      <entry key="SignUpActivity">
-        <State />
+      <entry key="ViewGameActivity">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\richa\.android\avd\Pixel_7_API_31.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-04-20T16:53:26.250601300Z" />
+        </State>
       </entry>
       <entry key="app">
         <State>
@@ -22,12 +38,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\richa\.android\avd\Medium_Phone_API_31_1.avd" />
+                  <value value="C:\Users\richa\.android\avd\Copy_of_Pixel_7_API_31.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-11T13:39:28.691980700Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-15T13:07:57.113952700Z" />
         </State>
       </entry>
     </value>
