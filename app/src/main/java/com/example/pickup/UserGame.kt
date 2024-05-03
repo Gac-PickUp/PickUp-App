@@ -8,15 +8,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 
-class ViewGameActivity : AppCompatActivity() {
+class UserGame : AppCompatActivity() {
     private lateinit var createGameButton: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ViewGameAdapter
     private lateinit var gamesList: MutableList<Map<String, Any>>
     private lateinit var searchView: SearchView
+    private lateinit var userId: String
+    private lateinit var fAuth: FirebaseAuth
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,28 +30,37 @@ class ViewGameActivity : AppCompatActivity() {
         createGameButton = findViewById(R.id.createGameButton)
         recyclerView = findViewById(R.id.recyclerView)
         searchView = findViewById(R.id.searchView)
-
         recyclerView.layoutManager = LinearLayoutManager(this)
         gamesList = mutableListOf()
-
-
         adapter = ViewGameAdapter(gamesList)
         recyclerView.adapter = adapter
+        fAuth = FirebaseAuth.getInstance()
+        userId = "4VnOZMlronOz9YC4kWNb2ol6XXS2" //fAuth.currentUser?.uid ?: "null"
+
 
         val db = FirebaseFirestore.getInstance()
-        db.collection("games")
+        db.collection("players").document(userId)
+            .collection("gamesIn")
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     val game = document.data
                     gamesList.add(game)
+                    Log.d(game.toString(), "game")
                 }
+                val gameList = gamesList
+                Log.d(gameList.toString(), "game")
                 adapter.notifyDataSetChanged()
             }
             .addOnFailureListener { exception ->
-                Toast.makeText(this, "Failed to fetch games: ${exception.message}", Toast.LENGTH_SHORT).show()
-                Log.e("ViewGameActivity", "Failed to fetch games", exception)
+                Toast.makeText(
+                    this,
+                    "Failed to fetch games: ${exception.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                // Log.e("ViewGameActivity", "Failed to fetch games", exception)
             }
+
 
         createGameButton.setOnClickListener {
             startActivity(Intent(this, CreateGameActivity::class.java))
@@ -68,7 +81,7 @@ class ViewGameActivity : AppCompatActivity() {
         adapter.setOnItemClickListener(object : ViewGameAdapter.OnItemClickListener {
             override fun onItemClick(game: Map<String, Any>) {
                 game.let {
-                    val intent = Intent(this@ViewGameActivity, GameDetailsActivity::class.java)
+                    val intent = Intent(this@UserGame, GameDetailsActivity::class.java)
                     val jsonGame = Gson().toJson(game)
                     intent.putExtra("game", jsonGame)
 
