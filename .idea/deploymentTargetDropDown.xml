@@ -6,7 +6,20 @@
         <State />
       </entry>
       <entry key="GameRecyclerView">
-        <State />
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\richa\.android\avd\Pixel_7_API_31.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-05-04T17:58:42.890196500Z" />
+        </State>
       </entry>
       <entry key="LoginPage">
         <State />

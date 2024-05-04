@@ -26,7 +26,7 @@ class ButtonFragment : Fragment() {
         }
 
         myGamesButton.setOnClickListener {
-            startActivity(Intent(requireContext(), ViewGameActivity::class.java))
+            startActivity(Intent(requireContext(), UserGame::class.java))
         }
 
         allGamesButton.setOnClickListener {

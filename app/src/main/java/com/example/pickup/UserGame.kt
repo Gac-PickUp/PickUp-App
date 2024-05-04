@@ -1,4 +1,5 @@
 package com.example.pickup
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,9 +24,10 @@ class UserGame : AppCompatActivity() {
 
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_game)
+        setContentView(R.layout.activity_user_game)
 
         createGameButton = findViewById(R.id.createGameButton)
         recyclerView = findViewById(R.id.recyclerView)
@@ -46,10 +48,10 @@ class UserGame : AppCompatActivity() {
                 for (document in documents) {
                     val game = document.data
                     gamesList.add(game)
-                    Log.d(game.toString(), "game")
+                    //Log.d(game.toString(), "game")
                 }
-                val gameList = gamesList
-                Log.d(gameList.toString(), "game")
+                //val gameList = gamesList
+                //Log.d(gameList.toString(), "gameList")
                 adapter.notifyDataSetChanged()
             }
             .addOnFailureListener { exception ->

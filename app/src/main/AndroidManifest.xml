@@ -17,7 +17,8 @@
             android:exported="false" />
         <activity
             android:name=".UserGame"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".GameDetailsActivity"
             android:exported="true"
