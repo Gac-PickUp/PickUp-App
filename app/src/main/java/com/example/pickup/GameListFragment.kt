@@ -20,40 +20,19 @@ class GameListFragment : Fragment() {
     private lateinit var searchView: SearchView
     private lateinit var gamesList: MutableList<Map<String, Any>>
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_game_list, container, false)
-        gamesList = mutableListOf<Map<String, Any>>()
+        gamesList = mutableListOf()
         recyclerView = view.findViewById(R.id.recyclerView)
         searchView = view.findViewById(R.id.searchView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-
-
-
-        val db = FirebaseFirestore.getInstance()
-        db.collection("games")
-            .get()
-            .addOnSuccessListener { documents ->
-
-                for (document in documents) {
-                    val game = document.data
-                    gamesList.add(game)
-                }
-
-                adapter = ViewGameAdapter(gamesList)
-                recyclerView.adapter = adapter
-
-            }
-
-            .addOnFailureListener { exception ->
-                Toast.makeText(requireContext(), "Failed to fetch games: ${exception.message}", Toast.LENGTH_SHORT).show()
-            }
-
-
+        // Initialize adapter
+        adapter = ViewGameAdapter(gamesList)
+        recyclerView.adapter = adapter
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -64,9 +43,24 @@ class GameListFragment : Fragment() {
                 adapter.filter.filter(newText)
                 return false
             }
-        })/*
+        })
 
-         //Set item click listener
+        // Fetch data from Firestore
+        val db = FirebaseFirestore.getInstance()
+        db.collection("games")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    val game = document.data
+                    gamesList.add(game)
+                }
+                adapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(requireContext(), "Failed to fetch games: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+
+
         adapter.setOnItemClickListener(object : ViewGameAdapter.OnItemClickListener {
             override fun onItemClick(game: Map<String, Any>) {
                 game.let {
@@ -77,7 +71,7 @@ class GameListFragment : Fragment() {
                     startActivity(intent)
                 }
             }
-        })*/
+        })
 
         return view
     }

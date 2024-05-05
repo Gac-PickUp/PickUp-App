@@ -3,7 +3,7 @@ package com.example.pickup
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-class ViewGameActivity : AppCompatActivity() {
+class ViewGameActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
