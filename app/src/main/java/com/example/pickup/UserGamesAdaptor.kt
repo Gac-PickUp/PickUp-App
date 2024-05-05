@@ -19,7 +19,7 @@ class UserGamesAdaptor(private val games: List<Map<String, Any>>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_view_game_adaptor, parent, false)
+            .inflate(R.layout.activity_user_game_adaptor, parent, false)
         return GameViewHolder(view)
     }
 

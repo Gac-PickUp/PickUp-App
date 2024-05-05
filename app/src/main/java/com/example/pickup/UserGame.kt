@@ -16,7 +16,7 @@ import com.google.gson.Gson
 class UserGame : AppCompatActivity() {
     private lateinit var createGameButton: Button
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ViewGameAdapter
+    private lateinit var adapter: UserGamesAdaptor
     private lateinit var gamesList: MutableList<Map<String, Any>>
     private lateinit var searchView: SearchView
     private lateinit var userId: String
@@ -34,7 +34,7 @@ class UserGame : AppCompatActivity() {
         searchView = findViewById(R.id.searchView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         gamesList = mutableListOf()
-        adapter = ViewGameAdapter(gamesList)
+        adapter = UserGamesAdaptor(gamesList)
         recyclerView.adapter = adapter
         fAuth = FirebaseAuth.getInstance()
         userId = "4VnOZMlronOz9YC4kWNb2ol6XXS2" //fAuth.currentUser?.uid ?: "null"
@@ -60,7 +60,7 @@ class UserGame : AppCompatActivity() {
                     "Failed to fetch games: ${exception.message}",
                     Toast.LENGTH_SHORT
                 ).show()
-                // Log.e("ViewGameActivity", "Failed to fetch games", exception)
+                 Log.e("ViewGameActivity", "Failed to fetch games", exception)
             }
 
 
@@ -80,7 +80,7 @@ class UserGame : AppCompatActivity() {
         })
 
         // Set item click listener
-        adapter.setOnItemClickListener(object : ViewGameAdapter.OnItemClickListener {
+        adapter.setOnItemClickListener(object : UserGamesAdaptor.OnItemClickListener {
             override fun onItemClick(game: Map<String, Any>) {
                 game.let {
                     val intent = Intent(this@UserGame, GameDetailsActivity::class.java)
