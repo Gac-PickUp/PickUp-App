@@ -1,15 +1,13 @@
 package com.example.pickup
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class GameAdapter(private val games: List<Map<String, Any>>) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
+class GameAdapter(private val games: MutableList<Usergame>) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
