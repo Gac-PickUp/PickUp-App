@@ -19,7 +19,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".ViewGameActivity"
+            android:name=".SingleGameViewActivity"
             android:exported="true" />
 
         <activity
@@ -55,6 +55,7 @@
             android:exported="true"
             android:label="MainActivity"
             android:theme="@style/Base.Theme.PickUp" />
+
         <activity
             android:name=".CreateGameActivity"
             android:exported="true"

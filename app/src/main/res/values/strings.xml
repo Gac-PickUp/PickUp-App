@@ -5,7 +5,7 @@
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
     <string name="gac_logo">GAC logo</string>
-    <string name="forgot_password">Forgot password</string>
+    <string name="forgot_password">Forgot password?</string>
     <string name="landingPageWelcome">Pickup Time!</string>
     <string name="title_activity_login_page">Login</string>
     <string name="next">Next</string>
@@ -89,5 +89,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="already_have_an_account">Already have an account</string>
 
 </resources>

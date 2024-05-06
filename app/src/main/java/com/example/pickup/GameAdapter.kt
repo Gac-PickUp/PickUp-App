@@ -26,6 +26,7 @@ class GameAdapter(private val games: List<Map<String, Any>>) : RecyclerView.Adap
 
         fun bind(game: Map<String, Any>) {
             sportTextView.text = game["sport"].toString()
+
             locationTextView.text = game["location"].toString()
             minPlayersTextView.text = game["minPlayers"].toString()
             maxPlayersTextView.text = game["maxPlayers"].toString()

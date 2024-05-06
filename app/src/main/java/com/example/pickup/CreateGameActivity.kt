@@ -2,6 +2,7 @@ package com.example.pickup
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pickup.databinding.ActivityCreateGameBinding
+import com.example.pickup.databinding.ActivityCreateGameRealBinding
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.AggregateSource
@@ -19,7 +21,7 @@ import java.util.Locale
 
 private val TAG: String = CreateGameActivity::class.java.getName()
 class CreateGameActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityCreateGameBinding
+    private lateinit var binding: ActivityCreateGameRealBinding
     var hour: Int = 0
     var minute: Int = 0
     private val calendar = Calendar.getInstance()
@@ -31,7 +33,7 @@ class CreateGameActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-        binding = ActivityCreateGameBinding.inflate(layoutInflater)
+        binding = ActivityCreateGameRealBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //updatePlayerCount()
@@ -45,6 +47,8 @@ class CreateGameActivity : AppCompatActivity() {
         autocompleteTV.setAdapter(sportsArrayAdapter)
 
         //Creating the dropdown menu for choosing a group or public
+
+        /*
         val groupsList = resources.getStringArray(R.array.groups_choice_list)
 
         val groupsArrayAdapter = ArrayAdapter(this, R.layout.activity_dropdown_item, groupsList)
@@ -53,6 +57,8 @@ class CreateGameActivity : AppCompatActivity() {
 
         groupsAutocomplete.setAdapter(groupsArrayAdapter)
 
+
+         */
 
         val user = Firebase.auth.currentUser
         val uid = user?.uid
@@ -94,30 +100,45 @@ class CreateGameActivity : AppCompatActivity() {
 
 
         binding.createGameButton.setOnClickListener{view ->
-            val newGameRef = db.collection("games").document()
-
+            val ranNum = (0..10000000).random()
+            val ranNumString = ranNum.toString()
+            val newGameRef = db.collection("games").document(ranNumString)
             val gameInfo = hashMapOf(
                 "authorID" to uid,
+                "gameid" to ranNumString,
                 "title" to binding.titleText.text.toString(),
                 "sport" to binding.autoCompleteTextView.text.toString(),
                 "location" to binding.locationText.text.toString(),
                 "minPlayers" to binding.minPlayersText.text.toString().toIntOrNull(),
                 "maxPlayers" to binding.maxPlayersText.text.toString().toIntOrNull(),
                 "date" to binding.dateButton.text.toString(),
-                "time" to binding.timeButton.text.toString(),
-                "team" to binding.chooseTeamAutoComplete.text.toString()
+                "time" to binding.timeButton.text.toString()
+                //"team" to binding.chooseTeamAutoComplete.text.toString()
             )
             val playerinfo = hashMapOf(
                 "playerID" to uid
             )
+
 
             newGameRef
                 .set(gameInfo)
                 .addOnSuccessListener { documentReference ->
                     Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
                     if (uid != null) {
-                        newGameRef.collection("playerID").add(playerinfo)
+                        newGameRef.collection("playerIDs").document(uid).set(playerinfo)
+                        db.collection("players").document(uid).collection("gamesIn").document(ranNumString).set(gameInfo)
                     }
+                    val intent = Intent(this, SingleGameViewActivity::class.java)
+                    intent.putExtra("title", binding.titleText.text.toString())
+                    intent.putExtra("sport", binding.autoCompleteTextView.text.toString())
+                    intent.putExtra("location",  binding.locationText.text.toString())
+                    intent.putExtra("minPlayers", binding.minPlayersText.text.toString())
+                    intent.putExtra("maxPlayers", binding.maxPlayersText.text.toString())
+                    intent.putExtra("date", binding.dateButton.text.toString())
+                    intent.putExtra("time", binding.timeButton.text.toString())
+                    //intent.putExtra("team", binding.chooseTeamAutoComplete.text.toString())
+                    startActivity(intent)
+
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to create game", Toast.LENGTH_SHORT).show()

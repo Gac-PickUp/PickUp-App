@@ -32,6 +32,10 @@ class SignUpActivity : AppCompatActivity() {
 
     val db = Firebase.firestore
 
+    val user = auth.currentUser
+
+    val uid = user?.uid
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_page)
@@ -112,27 +116,37 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     progressBar.visibility = View.GONE
                     // Sign up success, update UI with the signed-up user's information
-                    val user = auth.currentUser
+
 
                     startActivity(Intent(this, CreateGameActivity::class.java))
-                    val newUserRef = db.collection("players").document()
 
-                    val playerInfo = hashMapOf(
-                        "email" to user?.email.toString(),
-                        "firstName" to firstName,
-                        "lastName" to lastName
-                    )
 
-                    newUserRef
-                        .set(playerInfo)
-                        .addOnSuccessListener { documentReference ->
-                            Toast.makeText(this, "Player Created Successfully", Toast.LENGTH_SHORT).show()
+                    if (uid != null) {
+                        val newUserRef = db.collection("players").document(uid)
+
+                        val playerInfo = hashMapOf(
+                            "email" to user?.email.toString(),
+                            "firstName" to firstName,
+                            "lastName" to lastName
+                        )
+
+                        newUserRef
+                            .set(playerInfo)
+                            .addOnSuccessListener { documentReference ->
+                                Toast.makeText(
+                                    this,
+                                    "Player Created Successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 newUserRef.collection("gamesIn")
 
-                        }
-                        .addOnFailureListener { e ->
-                            Toast.makeText(this, "Failed to create player", Toast.LENGTH_SHORT).show()
-                        }
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Failed to create player", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+
+                    }
 
 
                     startActivity(Intent(this, MainActivity::class.java))
