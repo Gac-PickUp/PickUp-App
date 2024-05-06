@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/Food"
+        android:id="@+id/dashboard_item"
         android:title="@string/dashboard"
         android:enabled="true"
         android:icon="@drawable/dashboard"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/Stats"
+        android:id="@+id/my_games_item"
         android:title="@string/my_games"
         android:enabled="true"
         android:icon="@drawable/me"

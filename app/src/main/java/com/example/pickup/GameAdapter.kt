@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class GameAdapter(private val games: MutableList<Usergame>) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
+class GameAdapter(private val games: MutableList<Map<String, Any>>) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
