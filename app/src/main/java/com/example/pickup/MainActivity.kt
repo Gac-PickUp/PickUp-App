@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager: FragmentManager = supportFragmentManager
 
         val usergameFragment: Fragment = myGamesFragment()
+        val allgamesFragment: Fragment= AllGamesFragment()
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             lateinit var fragment: Fragment
             when (item.itemId) {
                 R.id.my_games_item -> fragment = usergameFragment
+                R.id.dashboard_item->fragment = allgamesFragment
                 //add the fdashboard page
             }
             replaceFragment(fragment)
@@ -44,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         }
         // Set default selection
         bottomNavigationView.selectedItemId = R.id.dashboard_item
-
 
     }
     private fun replaceFragment(usergameFragment: Fragment) {
