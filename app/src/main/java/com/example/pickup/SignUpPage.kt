@@ -118,7 +118,7 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign up success, update UI with the signed-up user's information
 
 
-                    startActivity(Intent(this, CreateGameActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
 
 
                     if (uid != null) {

@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager: FragmentManager = supportFragmentManager
 
         val usergameFragment: Fragment = myGamesFragment()
+
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
         bottomNavigationView.setOnItemSelectedListener { item ->
