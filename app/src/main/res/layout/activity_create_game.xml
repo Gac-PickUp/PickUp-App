@@ -26,6 +26,29 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chooseTitle"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:boxBackgroundColor="#99D98C"
+        >
+
+        <EditText
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="@string/choose_title_text">
+
+        </EditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +58,7 @@
         android:id="@+id/chooseSport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/chooseTitle"
         app:boxBackgroundColor="#99D98C"
         >
 
@@ -148,6 +171,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -180,11 +204,41 @@
         app:layout_constraintTop_toBottomOf="@+id/chooseTeamOrOpen"
         android:textColor="@color/black"
         android:backgroundTint="#99D98C"
-        android:textColor="@color/black"
         android:hint="@string/date_text"
         >
 
     </Button>
+
+   <!-- <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginStart="75dp"
+        app:layout_constraintTop_toBottomOf="@id/dateButton"
+        android:backgroundTint="#99D98C"
+        android:textColor="@color/black"
+        android:id="@+id/testAddButton"
+        android:text="Join Game"
+        >
+
+
+    </Button>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintTop_toBottomOf="@id/testAddButton"
+        android:backgroundTint="#99D98C"
+        android:textColor="@color/black"
+        android:id="@+id/testPlayerCount"
+        >
+
+
+    </Button>-->
 
     <Button
         android:layout_width="match_parent"

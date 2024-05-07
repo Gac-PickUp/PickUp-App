@@ -5,7 +5,7 @@
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
     <string name="gac_logo">GAC logo</string>
-    <string name="forgot_password">Forgot password</string>
+    <string name="forgot_password">Forgot password?</string>
     <string name="landingPageWelcome">Pickup Time!</string>
     <string name="title_activity_login_page">Login</string>
     <string name="next">Next</string>
@@ -28,12 +28,14 @@
     <string name="game_form_title">Create a Game</string>
     <string name="choose_sport">Choose a Sport</string>
     <string name="location">Location</string>
+    <string name="choose_title_text">Choose Game Title</string>
     <string name="min_players_text">Min Players</string>
     <string name="max_players_text">Max Players</string>
     <string name="team_or_open_text">Choose a Team or Open Play</string>
     <string name="time_text">Time</string>
     <string name="date_text">Date</string>
     <string name="create_game_text">Create Game</string>
+    <string name="title_create_game_activity">CreateGameActivity</string>
 
     <string-array name="sports_list">
         <item>Soccer</item>
@@ -87,5 +89,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="already_have_an_account">Already have an account</string>
 
 </resources>

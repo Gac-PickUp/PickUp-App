@@ -85,6 +85,9 @@ class LoginPage : AppCompatActivity() {
         }
     }
 
+
+
+
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -93,7 +96,7 @@ class LoginPage : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
 
-                    startActivity(Intent(this, CreateGameActivity::class.java))
+                    startActivity(Intent(this, ViewGameActivity::class.java))
                     finish()
                 } else {
                     progressBar.visibility = View.GONE

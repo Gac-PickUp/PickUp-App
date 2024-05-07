@@ -11,10 +11,12 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.firestore.firestore
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -28,16 +30,11 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var backButton: Button
 
-//
-//    public override fun onStart() {
-//        super.onStart()
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        val currentUser = auth.currentUser
-//        if (currentUser != null) {
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//        }
-//    }
+    val db = Firebase.firestore
+
+    val user = auth.currentUser
+
+    val uid = user?.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +56,19 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginPage::class.java))
         }
 
+
+        /*
+        TODO
+
+        When signing up user add them to the "players" collection in the database
+        Can use their email as a uid
+        have properties like name etc.
+        have subcollection of games that they are signed up for called "gamesIn"
+            This subcollection will be empty and be populated when a user either creates a game or joins a game
+            It will be populated by gameIDs
+            When viewing a user's profile and clicking "My Games" show this list
+
+         */
 
         signUpButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
@@ -106,9 +116,40 @@ class SignUpActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     progressBar.visibility = View.GONE
                     // Sign up success, update UI with the signed-up user's information
-                    val user = auth.currentUser
+
 
                     startActivity(Intent(this, CreateGameActivity::class.java))
+
+
+                    if (uid != null) {
+                        val newUserRef = db.collection("players").document(uid)
+
+                        val playerInfo = hashMapOf(
+                            "email" to user?.email.toString(),
+                            "firstName" to firstName,
+                            "lastName" to lastName
+                        )
+
+                        newUserRef
+                            .set(playerInfo)
+                            .addOnSuccessListener { documentReference ->
+                                Toast.makeText(
+                                    this,
+                                    "Player Created Successfully",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                newUserRef.collection("gamesIn")
+
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Failed to create player", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+
+                    }
+
+
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 } else {
                     progressBar.visibility = View.GONE
