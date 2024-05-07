@@ -71,8 +71,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/email_input"
+                            android:inputType="textEmailAddress"
 
-                            android:textColor="#777479"
+
                             android:paddingStart="45dp"
                             />
 
@@ -96,7 +97,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/password_input"
-                            android:textColor="#777479"
+                            android:inputType="textPassword"
+
                             android:paddingStart="45dp"
                             />
 

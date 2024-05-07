@@ -67,6 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Sport: "
+                            android:textStyle="bold"
                             android:textSize="18sp"
 
                             />
@@ -90,6 +91,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textStyle="bold"
                             android:text="Location: "
                             android:textSize="18sp"
                             />
@@ -114,6 +116,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Date: "
+                            android:textStyle="bold"
                             android:textSize="18sp"
                             />
 
@@ -136,6 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Time: "
+                            android:textStyle="bold"
                             android:textSize="18sp"
                             />
 
