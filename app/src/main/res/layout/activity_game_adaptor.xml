@@ -23,16 +23,19 @@
             >
 
 
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Title"
+                android:textColor="#757575"
+                style="@style/modifiedEditText"
+                android:background="?attr/editTextBackground"
                 android:id="@+id/titleTextView"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_marginLeft="10dp">
 
-            </TextView>
+            </EditText>
 
 
             <LinearLayout
@@ -55,6 +58,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:paddingLeft="10dp"
+                    android:gravity="center"
                     >
 
                     <LinearLayout
@@ -77,6 +81,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
+                            android:textColor="#5b7b7d"
                             />
 
                     </LinearLayout>
@@ -101,6 +106,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
+                            android:textColor="#5b7b7d"
                             />
 
                     </LinearLayout>
@@ -125,6 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
+                            android:textColor="#5b7b7d"
                             />
 
                     </LinearLayout>
@@ -147,6 +154,7 @@
                             android:id="@+id/timeTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="#5b7b7d"
                             android:textSize="18sp"
                             />
 
