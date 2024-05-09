@@ -24,7 +24,6 @@
     <string name="fill_login_message">Please enter email and password</string>
     <string name="incorrect_login_message">Incorrect email or password</string>
 
-
     <string name="game_form_title">Create a Game</string>
     <string name="choose_sport">Choose a Sport</string>
     <string name="location">Location</string>
@@ -90,5 +89,11 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="already_have_an_account">Already have an account</string>
+    <string name="dashboard">dashboard</string>
+    <string name="my_games">my_games</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="game_type">Game Type</string>
+    <string name="date">Date</string>
+
 
 </resources>
