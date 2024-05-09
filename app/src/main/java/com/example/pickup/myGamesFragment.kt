@@ -31,7 +31,8 @@ class myGamesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         // Initialize RecyclerView and its adapter
-        rvUserGames = view?.findViewById(R.id.rv_userGames)!!
+        val view = inflater.inflate(R.layout.fragment_my_games, container, false)
+        rvUserGames = view.findViewById(R.id.rv_userGames)
         rvUserGames.layoutManager = LinearLayoutManager(context)
         userGames = mutableListOf()
         rvUserGameAdapter = UserGameAdapter(userGames)
@@ -65,13 +66,6 @@ class myGamesFragment : Fragment() {
                 .addOnFailureListener { exception ->
                     // Handle any errors
                 }
-        }
-    }
-
-
-    companion object {
-        fun newInstance(): myGamesFragment {
-            return myGamesFragment()
         }
     }
 }

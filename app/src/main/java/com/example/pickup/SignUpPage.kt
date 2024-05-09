@@ -11,11 +11,13 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 
 class SignUpActivity : AppCompatActivity() {
@@ -28,11 +30,11 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var confirmPasswordInput: EditText
     private lateinit var signUpButton: Button
     private lateinit var progressBar: ProgressBar
-    private lateinit var backButton: Button
+    private lateinit var backButton: MaterialTextView
 
-    val db = Firebase.firestore
+    private var  db = Firebase.firestore
 
-    val user = auth.currentUser
+    private var user = Firebase.auth.currentUser
 
     val uid = user?.uid
 
@@ -118,7 +120,7 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign up success, update UI with the signed-up user's information
 
 
-                    startActivity(Intent(this, ViewGameActivity::class.java))
+                    startActivity(Intent(this, CreateGameActivity::class.java))
 
 
                     if (uid != null) {

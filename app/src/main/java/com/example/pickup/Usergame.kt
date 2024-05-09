@@ -2,13 +2,11 @@ package com.example.pickup
 
 import android.widget.TextView
 
-class Usergame (
-    val date: String,
-    val location: String,
-    val maxPlayers: Int,
-    val time: String,
-    val sport: String)
-{
-
-
+class Usergame {
+    // Properties
+    var date: String ?= null
+    var location: String ?= null
+    var maxPlayers: Int ?= null
+    var time: String ?= null
+    var sport: String ?= null
 }

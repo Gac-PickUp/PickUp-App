@@ -1,6 +1,8 @@
 package com.example.pickup
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
 
+        val creategameButton: Button= findViewById(R.id.creategamebtn)
+
         bottomNavigationView.setOnItemSelectedListener { item ->
             lateinit var fragment: Fragment
             when (item.itemId) {
@@ -46,6 +50,12 @@ class MainActivity : AppCompatActivity() {
         }
         // Set default selection
         bottomNavigationView.selectedItemId = R.id.dashboard_item
+
+        creategameButton.setOnClickListener{
+
+            startActivity(Intent(this, CreateGameActivity::class.java))
+
+        }
 
     }
     private fun replaceFragment(usergameFragment: Fragment) {
