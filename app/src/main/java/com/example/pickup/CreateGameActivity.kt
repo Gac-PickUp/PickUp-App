@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
@@ -98,6 +100,36 @@ class CreateGameActivity : AppCompatActivity() {
 
 
 
+        binding.minPlayersText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+
+            override fun afterTextChanged(p0: Editable?) {
+                checkPlayerCountMin()
+            }
+
+
+        })
+
+        binding.maxPlayersText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                checkPlayerCountMax()
+            }
+
+        })
+
 
         binding.createGameButton.setOnClickListener{view ->
             val ranNum = (0..10000000).random()
@@ -128,6 +160,11 @@ class CreateGameActivity : AppCompatActivity() {
                         newGameRef.collection("playerIDs").document(uid).set(playerinfo)
                         db.collection("players").document(uid).collection("gamesIn").document(ranNumString).set(gameInfo)
                     }
+
+                    val intent = Intent(this, ViewGameActivity::class.java)
+
+                    startActivity(intent)
+                    /*
                     val intent = Intent(this, SingleGameViewActivity::class.java)
                     intent.putExtra("title", binding.titleText.text.toString())
                     intent.putExtra("sport", binding.autoCompleteTextView.text.toString())
@@ -138,6 +175,8 @@ class CreateGameActivity : AppCompatActivity() {
                     intent.putExtra("time", binding.timeButton.text.toString())
                     //intent.putExtra("team", binding.chooseTeamAutoComplete.text.toString())
                     startActivity(intent)
+                    */
+
 
                 }
                 .addOnFailureListener { e ->
@@ -198,6 +237,32 @@ class CreateGameActivity : AppCompatActivity() {
         val timePickerDialog = TimePickerDialog(this, /*style,*/ onTimeSetListener, hour, minute, false)
         timePickerDialog.setTitle("Select Time")
         timePickerDialog.show()
+    }
+
+    fun checkPlayerCountMin (){
+
+        val minPlayers = binding.minPlayersText.text.toString()
+        val maxPlayers = binding.maxPlayersText.text.toString()
+        if (minPlayers.isNotEmpty()  && maxPlayers.isNotEmpty()){
+            if(minPlayers.toInt() > maxPlayers.toInt()){
+                binding.minPlayersText.setError("Min players bigger than max players")
+            }
+            else
+                binding.minPlayersText.setError(null)
+        }
+    }
+
+    fun checkPlayerCountMax (){
+
+        val minPlayers = binding.minPlayersText.text.toString()
+        val maxPlayers = binding.maxPlayersText.text.toString()
+        if (minPlayers.isNotEmpty()  && maxPlayers.isNotEmpty()){
+            if(minPlayers.toInt() > maxPlayers.toInt()){
+                binding.maxPlayersText.setError("Max players smaller than min players")
+            }
+            else
+                binding.maxPlayersText.setError(null)
+        }
     }
 
 

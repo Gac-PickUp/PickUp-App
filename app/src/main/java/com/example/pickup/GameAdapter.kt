@@ -42,7 +42,7 @@ class GameAdapter(private val games: List<Map<String, Any>>) : RecyclerView.Adap
                 imageView.setImageResource(R.drawable.volleyball)
             }
             if (sport == "Pickle ball"){
-                imageView.setImageResource(R.drawable.pickleball)
+                imageView.setImageResource(R.drawable.pickleball_image)
             }
 
             sportTextView.text = sport
