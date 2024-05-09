@@ -16,7 +16,8 @@
         android:text="Location"
         android:textSize="24sp"
         android:layout_marginTop="24dp"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold"
+        />
 
 
 
@@ -28,7 +29,8 @@
         android:textSize="18sp"
         android:layout_below="@id/locationTextView"
         android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold"
+       />
 
     <TextView
         android:id="@+id/dateTextView"
@@ -38,7 +40,8 @@
         android:textSize="18sp"
         android:layout_below="@id/sportTextView"
         android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold"
+       />
 
     <TextView
         android:id="@+id/timeTextView"
@@ -48,7 +51,8 @@
         android:textSize="18sp"
         android:layout_below="@id/dateTextView"
         android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold"
+      />
 
     <TextView
         android:id="@+id/minPlayersTextView"
@@ -58,7 +62,8 @@
         android:textSize="18sp"
         android:layout_below="@id/timeTextView"
         android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold"
+      />
 
     <TextView
         android:id="@+id/maxPlayersTextView"
@@ -68,7 +73,8 @@
         android:textSize="18sp"
         android:layout_below="@id/minPlayersTextView"
         android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/teamTextView"
@@ -78,7 +84,11 @@
         android:textSize="18sp"
         android:layout_below="@id/maxPlayersTextView"
         android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold"
+      />
+
+
+
 
 
 </RelativeLayout>

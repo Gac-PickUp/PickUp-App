@@ -19,11 +19,11 @@ import java.util.Locale
 
 class CreateGameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateGameBinding
-    var hour: Int = 0
-    var minute: Int = 0
+    private var hour: Int = 0
+    private var minute: Int = 0
     private val calendar = Calendar.getInstance()
 
-    val db = Firebase.firestore
+    private val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -63,7 +63,7 @@ class CreateGameActivity : AppCompatActivity() {
 
             db.collection("games")
                 .add(gameInfo)
-                .addOnSuccessListener { documentReference ->
+                .addOnSuccessListener {
                     if (binding.autoCompleteTextView.text.isNotEmpty() && binding.locationText.text.isNotEmpty()
                         && binding.minPlayers.isNotEmpty() &&
                         binding.maxPlayers.isNotEmpty() && binding.dateButton.text.isNotEmpty() &&
@@ -85,7 +85,7 @@ class CreateGameActivity : AppCompatActivity() {
                     }
 
                 }
-                .addOnFailureListener { e ->
+                .addOnFailureListener {
                     Toast.makeText(this, "Failed to create game", Toast.LENGTH_SHORT).show()
                 }
         }
@@ -112,7 +112,7 @@ class CreateGameActivity : AppCompatActivity() {
             val datePickerDialog = DatePickerDialog(
                 // on below line we are passing context.
                 this,
-                { view, year, monthOfYear, dayOfMonth ->
+                { _, year, monthOfYear, dayOfMonth ->
                     // on below line we are setting
                     // date to our text view.
                     binding.dateButton.text =

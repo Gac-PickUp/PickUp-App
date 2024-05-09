@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -53,6 +54,7 @@ class SignUpActivity : AppCompatActivity() {
         signUpButton = findViewById(R.id.sign_up_btn)
         progressBar = findViewById(R.id.progressBar)
         backButton = findViewById(R.id.back_btn)
+
 
 
         backButton.setOnClickListener {
@@ -108,9 +110,40 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign up success, update UI with the signed-up user's information
                     val user = auth.currentUser
 
-                    startActivity(Intent(this, CreateGameActivity::class.java))
+
+                    val uid = user?.uid
+
+                    val db = FirebaseFirestore.getInstance()
+
+                    if (uid != null){
+                        val newUserRef = db.collection("players").document(uid)
+                    }
+
+                    val newUserRef = db.collection("players").document()
+                    val playerInfo = hashMapOf(
+                        "email" to user?.email.toString(),
+                        "firstName" to firstName,
+                        "lastName" to lastName
+                    )
+
+                    newUserRef
+                        .set(playerInfo)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Player created successfully", Toast.LENGTH_SHORT).show()
+                            newUserRef.collection("gamesIn")
+
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Failed to create player", Toast.LENGTH_SHORT).show()
+                        }
+
+
+
+
+                    startActivity(Intent(this, ViewGameActivity::class.java))
                     finish()
-                } else {
+                }
+                else {
                     progressBar.visibility = View.GONE
                     // If sign up fails, display a message to the user.
                     try {
