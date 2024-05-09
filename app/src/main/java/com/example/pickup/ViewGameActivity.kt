@@ -1,6 +1,6 @@
-
 package com.example.pickup
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 
-class ViewGameActivity : AppCompatActivity() {
-
+class ViewGameActivity : AppCompatActivity(), GameAdapter.OnGameItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_game)
@@ -27,7 +26,8 @@ class ViewGameActivity : AppCompatActivity() {
                     val game = document.data
                     gamesList.add(game)
                 }
-                val adapter = GameAdapter(gamesList)
+
+                val adapter = GameAdapter(gamesList, this)
                 recyclerView.adapter = adapter
             }
             .addOnFailureListener { exception ->
@@ -36,4 +36,21 @@ class ViewGameActivity : AppCompatActivity() {
             }
 
     }
+    override fun onGameItemClick(game: Map<String, Any>) {
+        // Create an intent to start the ClickGameItem activity
+        val intent = Intent(this, ClickGameItem::class.java)
+
+        // Pass the details of the clicked game as extras
+        intent.putExtra("sport", game["sport"].toString())
+        intent.putExtra("location", game["location"].toString())
+        intent.putExtra("minPlayers", game["minPlayers"].toString())
+        intent.putExtra("maxPlayers", game["maxPlayers"].toString())
+        intent.putExtra("date", game["date"].toString())
+        intent.putExtra("time", game["time"].toString())
+        intent.putExtra("team", game["team"].toString())
+
+        // Start the ClickGameItem activity
+        startActivity(intent)
+    }
+
 }

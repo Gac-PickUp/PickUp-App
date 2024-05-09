@@ -18,9 +18,9 @@
             android:name=".ViewGameActivity"
             android:exported="true" />
 
-        <activity
-            android:name=".ViewGameActivity"
-            android:exported="true" />
+        <activity android:name="com.example.pickup.ClickGameItem">
+            <!-- Optionally, you can add intent filters or other activity properties here -->
+        </activity>
 
         <activity
             android:name=".PasswordResetActivity"

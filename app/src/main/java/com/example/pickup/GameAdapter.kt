@@ -9,8 +9,11 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class GameAdapter(private val games: List<Map<String, Any>>) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
+class GameAdapter(private val games: List<Map<String, Any>>, private val clickListener: OnGameItemClickListener) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
 
+    interface OnGameItemClickListener {
+        fun onGameItemClick(game: Map<String, Any>)
+    }
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val sportTextView: TextView = itemView.findViewById(R.id.sportTextView)
@@ -22,8 +25,6 @@ class GameAdapter(private val games: List<Map<String, Any>>) : RecyclerView.Adap
         private val teamTextView: TextView = itemView.findViewById(R.id.teamTextView)
         private val cardView: CardView = itemView.findViewById(R.id.cardView)
 
-
-
         fun bind(game: Map<String, Any>) {
             sportTextView.text = game["sport"].toString()
             locationTextView.text = game["location"].toString()
@@ -32,9 +33,12 @@ class GameAdapter(private val games: List<Map<String, Any>>) : RecyclerView.Adap
             dateTextView.text = game["date"].toString()
             timeTextView.text = game["time"].toString()
             teamTextView.text = game["team"].toString()
+
+            cardView.setOnClickListener {
+                clickListener.onGameItemClick(game)
+            }
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.activity_game_adaptor, parent, false)
@@ -49,5 +53,3 @@ class GameAdapter(private val games: List<Map<String, Any>>) : RecyclerView.Adap
         return games.size
     }
 }
-
-
