@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -19,13 +20,26 @@ class UserGamesAdaptor(private val games: List<Map<String, Any>>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_user_game_adaptor, parent, false)
+            .inflate(R.layout.game_item, parent, false)
         return GameViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = filteredGames[position]
+        val sport = game.get("sport")
         holder.bind(game)
+        if(sport == "Soccer"){
+            holder.imageView.setImageResource(R.drawable.soccer_ball)
+        }
+        if(sport == "Basketball"){
+            holder.imageView.setImageResource(R.drawable.basketball)
+        }
+        if(sport == "Volleyball"){
+            holder.imageView.setImageResource(R.drawable.volleyball)
+        }
+        if(sport == "Pickle ball"){
+            holder.imageView.setImageResource(R.drawable.pickleball)
+        }
         holder.cardView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context, R.anim.anim))
     }
 
@@ -35,13 +49,14 @@ class UserGamesAdaptor(private val games: List<Map<String, Any>>) :
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
+        val imageView: ImageView = itemView.findViewById(R.id.sportImageUser)
         private val sportTextView: TextView = itemView.findViewById(R.id.sportTextView)
         private val locationTextView: TextView = itemView.findViewById(R.id.locationTextView)
-        private val minPlayersTextView: TextView = itemView.findViewById(R.id.minPlayersTextView)
-        private val maxPlayersTextView: TextView = itemView.findViewById(R.id.maxPlayersTextView)
+        // private val minPlayersTextView: TextView = itemView.findViewById(R.id.minPlayersTextView)
+        // private val maxPlayersTextView: TextView = itemView.findViewById(R.id.maxPlayersTextView)
         private val dateTextView: TextView = itemView.findViewById(R.id.dateTextView)
         private val timeTextView: TextView = itemView.findViewById(R.id.timeTextView)
-        private val teamTextView: TextView = itemView.findViewById(R.id.teamTextView)
+        //private val teamTextView: TextView = itemView.findViewById(R.id.teamTextView)
         val cardView: CardView = itemView.findViewById(R.id.cardView)
 
 
@@ -52,11 +67,11 @@ class UserGamesAdaptor(private val games: List<Map<String, Any>>) :
         fun bind(game: Map<String, Any>) {
             sportTextView.text = game["sport"].toString()
             locationTextView.text = game["location"].toString()
-            minPlayersTextView.text = game["minPlayers"].toString()
-            maxPlayersTextView.text = game["maxPlayers"].toString()
+           // minPlayersTextView.text = game["minPlayers"].toString()
+           // maxPlayersTextView.text = game["maxPlayers"].toString()
             dateTextView.text = game["date"].toString()
             timeTextView.text = game["time"].toString()
-            teamTextView.text = game["team"].toString()
+            //teamTextView.text = game["team"].toString()
         }
 
         override fun onClick(v: View?) {

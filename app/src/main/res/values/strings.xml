@@ -1,4 +1,5 @@
 <resources>
+    <string name="choose_title_text">Choose Game Title</string>
     <string name="app_name">PickUp</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -24,7 +25,6 @@
     <string name="fill_login_message">Please enter email and password</string>
     <string name="incorrect_login_message">Incorrect email or password</string>
     <string name="fill_create_game_form">Please complete the form</string>
-
 
     <string name="game_form_title">Create a Game</string>
     <string name="choose_sport">Choose a Sport</string>

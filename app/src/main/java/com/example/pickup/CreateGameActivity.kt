@@ -44,9 +44,9 @@ class CreateGameActivity : AppCompatActivity() {
 
         val groupsArrayAdapter = ArrayAdapter(this, R.layout.activity_dropdown_item, groupsList)
 
-        val groupsAutocomplete = findViewById<AutoCompleteTextView>(R.id.chooseTeamAutoComplete)
+        //val groupsAutocomplete = findViewById<AutoCompleteTextView>(R.id.chooseTeamAutoComplete)
 
-        groupsAutocomplete.setAdapter(groupsArrayAdapter)
+        //groupsAutocomplete.setAdapter(groupsArrayAdapter)
 
 
 
@@ -58,16 +58,16 @@ class CreateGameActivity : AppCompatActivity() {
                 "maxPlayers" to binding.maxPlayersText.text.toString().toIntOrNull(),
                 "date" to binding.dateButton.text.toString(),
                 "time" to binding.timeButton.text.toString(),
-                "team" to binding.chooseTeamAutoComplete.text.toString()
+               // "team" to binding.chooseTeamAutoComplete.text.toString()
             )
 
             db.collection("games")
                 .add(gameInfo)
                 .addOnSuccessListener {
                     if (binding.autoCompleteTextView.text.isNotEmpty() && binding.locationText.text.isNotEmpty()
-                        && binding.minPlayers.isNotEmpty() &&
-                        binding.maxPlayers.isNotEmpty() && binding.dateButton.text.isNotEmpty() &&
-                        binding.timeButton.text.isNotEmpty() and binding.chooseTeamAutoComplete.text.isNotEmpty()) {
+                        && binding.minPlayersText.text.isNotEmpty()&&
+                        binding.maxPlayersText.text.isNotEmpty() && binding.dateButton.text.isNotEmpty() &&
+                        binding.timeButton.text.isNotEmpty()) {
 
                         Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, ViewGameActivity::class.java))

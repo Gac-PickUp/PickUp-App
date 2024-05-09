@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".LandingPage"
     android:gravity = "center"
-    android:background="@drawable/login_background"
+    android:background="@drawable/centre_background"
     android:orientation = "vertical">
 
 
