@@ -22,10 +22,10 @@ class GameDetailsActivity : AppCompatActivity() {
         val sportTextView: TextView = findViewById(R.id.sportTextView)
         val locationTextView: TextView = findViewById(R.id.locationTextView)
         val minPlayersTextView: TextView = findViewById(R.id.minPlayersTextView)
-         val maxPlayersTextView: TextView = findViewById(R.id.maxPlayersTextView)
+        val maxPlayersTextView: TextView = findViewById(R.id.maxPlayersTextView)
         val dateTextView: TextView = findViewById(R.id.dateTextView)
-         val timeTextView: TextView = findViewById(R.id.timeTextView)
-         val teamTextView: TextView = findViewById(R.id.teamTextView)
+        val timeTextView: TextView = findViewById(R.id.timeTextView)
+        val teamTextView: TextView = findViewById(R.id.teamTextView)
 
 
         sportTextView.text = "Sport: ${game["sport"]}"
@@ -37,5 +37,5 @@ class GameDetailsActivity : AppCompatActivity() {
         teamTextView.text = "Team: ${game["team"]}"
 
 
-}
+    }
 }

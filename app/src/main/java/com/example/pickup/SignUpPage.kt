@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +28,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var confirmPasswordInput: EditText
     private lateinit var signUpButton: Button
     private lateinit var progressBar: ProgressBar
-    private lateinit var backButton: Button
+    private lateinit var alreadyHaveAccount:TextView
 
 //
 //    public override fun onStart() {
@@ -53,11 +54,11 @@ class SignUpActivity : AppCompatActivity() {
         confirmPasswordInput = findViewById(R.id.confirm_password_input)
         signUpButton = findViewById(R.id.sign_up_btn)
         progressBar = findViewById(R.id.progressBar)
-        backButton = findViewById(R.id.back_btn)
+        alreadyHaveAccount = findViewById(R.id.already_have_account)
 
 
 
-        backButton.setOnClickListener {
+        alreadyHaveAccount.setOnClickListener {
             startActivity(Intent(this, LoginPage::class.java))
         }
 

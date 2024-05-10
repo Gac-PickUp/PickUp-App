@@ -7,88 +7,121 @@
     tools:context=".GameDetailsActivity">
 
     <LinearLayout
+        android:id="@+id/gameDetailsLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location"
-        android:textSize="24sp"
-        android:layout_marginTop="24dp"
-        android:textStyle="bold"
-        />
+        android:orientation="vertical">
 
+        <TextView
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GAME"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/sportTextView"
-        android:layout_width="wrap_content"
+        <!-- Your existing TextViews -->
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="24sp"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/sportTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sport"
+            android:textSize="18sp"
+            android:layout_below="@id/locationTextView"
+            android:layout_marginTop="16dp"
+
+            />
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textSize="18sp"
+            android:layout_below="@id/sportTextView"
+            android:layout_marginTop="16dp"
+
+            />
+
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textSize="18sp"
+            android:layout_below="@id/dateTextView"
+            android:layout_marginTop="16dp"
+
+            />
+
+        <TextView
+            android:id="@+id/minPlayersTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min Players"
+            android:textSize="18sp"
+            android:layout_below="@id/timeTextView"
+            android:layout_marginTop="16dp"
+
+            />
+
+        <TextView
+            android:id="@+id/maxPlayersTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max Players"
+            android:textSize="18sp"
+            android:layout_below="@id/minPlayersTextView"
+            android:layout_marginTop="16dp"
+
+            />
+
+        <TextView
+            android:id="@+id/teamTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Team"
+            android:textSize="18sp"
+            android:layout_below="@id/maxPlayersTextView"
+            android:layout_marginTop="16dp"
+
+            />
+    </LinearLayout>
+
+    <!-- Buttons for Join Game and Leave Game -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sport"
-        android:textSize="18sp"
-        android:layout_below="@id/locationTextView"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-       />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="197dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:textSize="18sp"
-        android:layout_below="@id/sportTextView"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-       />
+        <Button
+            android:id="@+id/joinGameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginEnd="16dp"
+            android:text="Join Game"
+            android:background="@drawable/centre_button"/>
 
-    <TextView
-        android:id="@+id/timeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time"
-        android:textSize="18sp"
-        android:layout_below="@id/dateTextView"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-      />
-
-    <TextView
-        android:id="@+id/minPlayersTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Min Players"
-        android:textSize="18sp"
-        android:layout_below="@id/timeTextView"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-      />
-
-    <TextView
-        android:id="@+id/maxPlayersTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Max Players"
-        android:textSize="18sp"
-        android:layout_below="@id/minPlayersTextView"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        />
-
-    <TextView
-        android:id="@+id/teamTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Team"
-        android:textSize="18sp"
-        android:layout_below="@id/maxPlayersTextView"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-      />
-
-
-
-
+        <Button
+            android:id="@+id/leaveGameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:text="Leave Game"
+            android:background="@drawable/centre_button"/>
+    </LinearLayout>
 
 </RelativeLayout>

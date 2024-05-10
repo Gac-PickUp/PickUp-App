@@ -50,6 +50,7 @@
     <string name="previous">Previous</string>
     <string name="all_games">ALL GAMES</string>
     <string name="my_games">MY GAMES</string>
+    <string name="already_have_an_account">Already have an account</string>
 
 
 </resources>
