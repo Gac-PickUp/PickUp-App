@@ -19,13 +19,13 @@ class ViewGameAdapter(private val games: List<Map<String, Any>>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.game_item, parent, false)
+            .inflate(R.layout.activity_view_game_adaptor, parent, false)
         return GameViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = filteredGames[position]
-        val sport = game.get("sport")
+        val sport = game["sport"]
         holder.bind(game)
         if(sport == "Soccer"){
             holder.imageView.setImageResource(R.drawable.soccer_ball)
@@ -47,7 +47,7 @@ class ViewGameAdapter(private val games: List<Map<String, Any>>) :
     }
 
     inner class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-
+        private val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val imageView: ImageView = itemView.findViewById(R.id.sportImageUser)
         private val sportTextView: TextView = itemView.findViewById(R.id.sportTextView)
         private val locationTextView: TextView = itemView.findViewById(R.id.locationTextView)
@@ -64,6 +64,7 @@ class ViewGameAdapter(private val games: List<Map<String, Any>>) :
         }
 
         fun bind(game: Map<String, Any>) {
+            titleTextView.text = game["title"].toString()
             sportTextView.text = game["sport"].toString()
             locationTextView.text = game["location"].toString()
            // minPlayersTextView.text = game["minPlayers"].toString()
@@ -96,7 +97,9 @@ class ViewGameAdapter(private val games: List<Map<String, Any>>) :
                     games.filter { game ->
                         val location = game["location"].toString().lowercase(Locale.getDefault())
                         val sport = game["sport"].toString().lowercase(Locale.getDefault())
+                        val title = game["title"].toString().lowercase(Locale.getDefault())
                         location.contains(queryString) || sport.contains(queryString)
+                                ||title.contains(queryString)
                     }
                 }
                 val filterResults = FilterResults()

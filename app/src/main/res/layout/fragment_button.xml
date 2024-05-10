@@ -10,20 +10,20 @@
     <Button
         android:id="@+id/createGameButton"
         android:layout_width="wrap_content"
-        android:layout_height="65dp"
+        android:layout_height="100dp"
         android:text="@string/create_game_text" />
 
     <Button
         android:id="@+id/myGamesButton"
         android:layout_width="wrap_content"
-        android:layout_height="65dp"
+        android:layout_height="100dp"
         android:text="@string/my_games"
         android:layout_marginStart="16dp" />
 
     <Button
         android:id="@+id/allGamesButton"
         android:layout_width="wrap_content"
-        android:layout_height="65dp"
+        android:layout_height="100dp"
         android:text="@string/all_games"
         android:layout_marginStart="16dp" />
 

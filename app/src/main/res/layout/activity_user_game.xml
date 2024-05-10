@@ -24,7 +24,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="411dp"
-        android:layout_height="608dp"
+        android:layout_height="630dp"
         android:layout_marginTop="72dp"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,15 +33,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/createGameButton"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:background="@drawable/centre_button"
+        android:inputType="text"
+        android:paddingHorizontal="30dp"
         android:text="@string/create_game_text"
+        android:textSize="19dp"
+        android:typeface="normal"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"/>
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintVertical_bias="0.609">
+
+    </com.google.android.material.button.MaterialButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

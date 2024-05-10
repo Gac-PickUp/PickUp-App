@@ -84,8 +84,16 @@ class UserGame : AppCompatActivity() {
             override fun onItemClick(game: Map<String, Any>) {
                 game.let {
                     val intent = Intent(this@UserGame, GameDetailsActivity::class.java)
-                    val jsonGame = Gson().toJson(game)
-                    intent.putExtra("game", jsonGame)
+                    //val jsonGame = Gson().toJson(game)
+                    //intent.putExtra("game", jsonGame)
+                    //val intent = Intent(this, SingleGameViewActivity::class.java)
+                    intent.putExtra("title", game["title"].toString())
+                    intent.putExtra("sport", game["sport"].toString())
+                    intent.putExtra("location", game["location"].toString())
+                    intent.putExtra("minPlayers", game["minPlayers"].toString())
+                    intent.putExtra("maxPlayers", game["maxPlayers"].toString())
+                    intent.putExtra("date", game["date"].toString())
+                    intent.putExtra("time", game["time"].toString())
 
                     startActivity(intent)
                 }

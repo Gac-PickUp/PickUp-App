@@ -20,12 +20,28 @@
             android:orientation="vertical"
             >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title: "
+                android:textColor="#757575"
+                style="@style/modifiedEditText"
+                android:background="?attr/editTextBackground"
+                android:id="@+id/titleTextView"
+                android:inputType="none"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp">
+
+            </TextView>
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
 
                 <ImageView
                     android:layout_width="100dp"

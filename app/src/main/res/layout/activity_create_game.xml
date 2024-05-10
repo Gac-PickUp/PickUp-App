@@ -55,6 +55,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -66,6 +68,20 @@
                         android:layout_height="wrap_content"
                         android:padding="30dp"
                         android:orientation="vertical">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            style="@style/modifiedEditText"
+                            app:hintTextColor="@color/primaryTextColor"
+                            android:hint="@string/choose_title_text"
+                            android:id="@+id/titleText"
+                            android:padding="20dp"
+                            android:textSize="15dp"
+                            android:textColorHint="#5b7b7d">
+
+                        </EditText>
 
 
                         <com.google.android.material.textfield.TextInputLayout

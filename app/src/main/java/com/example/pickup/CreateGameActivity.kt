@@ -51,7 +51,10 @@ class CreateGameActivity : AppCompatActivity() {
 
 
         binding.createGameButton.setOnClickListener{view ->
+
+
             val gameInfo = hashMapOf(
+                "title" to binding.titleText.text.toString(),
                 "sport" to binding.autoCompleteTextView.text.toString(),
                 "location" to binding.locationText.text.toString(),
                 "minPlayers" to binding.minPlayersText.text.toString().toIntOrNull(),
@@ -61,17 +64,32 @@ class CreateGameActivity : AppCompatActivity() {
                // "team" to binding.chooseTeamAutoComplete.text.toString()
             )
 
+           // val minPlayers:Int = binding.minPlayersText.toString().toInt()
+           // val maxPlayers:Int = binding.maxPlayersText.toString().toInt()
+
+
             db.collection("games")
                 .add(gameInfo)
                 .addOnSuccessListener {
                     if (binding.autoCompleteTextView.text.isNotEmpty() && binding.locationText.text.isNotEmpty()
-                        && binding.minPlayersText.text.isNotEmpty()&&
+                        && binding.minPlayersText.text.isNotEmpty()&& binding.titleText.text.isNotEmpty() &&
                         binding.maxPlayersText.text.isNotEmpty() && binding.dateButton.text.isNotEmpty() &&
                         binding.timeButton.text.isNotEmpty()) {
 
                         Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, ViewGameActivity::class.java))
                     }
+
+                    val minPlayers: Int? = binding.minPlayersText.text.toString().toIntOrNull()
+                    val maxPlayers: Int? = binding.maxPlayersText.text.toString().toIntOrNull()
+                     if (minPlayers != null) {
+                        if (minPlayers > maxPlayers!!){
+                            Toast.makeText(this, "Number of min players can't be greater than max players", Toast.LENGTH_SHORT).show()
+                           
+                        }
+
+                    }
+
                     else{
                         val dialogView = layoutInflater.inflate(R.layout.fill_create_game_form, null)
 

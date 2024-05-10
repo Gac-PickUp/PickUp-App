@@ -65,8 +65,16 @@ class GameListFragment : Fragment() {
             override fun onItemClick(game: Map<String, Any>) {
                 game.let {
                     val intent = Intent(requireContext(), GameDetailsActivity::class.java)
-                    val jsonGame = Gson().toJson(game)
-                    intent.putExtra("game", jsonGame)
+                   // val jsonGame = Gson().toJson(game)
+                   // intent.putExtra("game", jsonGame)
+
+                    intent.putExtra("title", game["title"].toString())
+                    intent.putExtra("sport", game["sport"].toString())
+                    intent.putExtra("location", game["location"].toString())
+                    intent.putExtra("minPlayers", game["minPlayers"].toString())
+                    intent.putExtra("maxPlayers", game["maxPlayers"].toString())
+                    intent.putExtra("date", game["date"].toString())
+                    intent.putExtra("time", game["time"].toString())
 
                     startActivity(intent)
                 }
