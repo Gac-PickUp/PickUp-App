@@ -37,7 +37,8 @@ class UserGame : AppCompatActivity() {
         adapter = UserGamesAdaptor(gamesList)
         recyclerView.adapter = adapter
         fAuth = FirebaseAuth.getInstance()
-        userId = "4VnOZMlronOz9YC4kWNb2ol6XXS2" //fAuth.currentUser?.uid ?: "null"
+        userId =  fAuth.currentUser?.uid ?: "null" // "4VnOZMlronOz9YC4kWNb2ol6XXS2"
+        Log.d(userId.toString(), "userId")
 
 
         val db = FirebaseFirestore.getInstance()

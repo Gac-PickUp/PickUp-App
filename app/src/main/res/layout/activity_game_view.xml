@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/centre_background"
     android:padding="20dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        >
+        android:layout_centerInParent="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,77 +28,166 @@
                     android:padding="20dp"
                     android:orientation="vertical">
 
-                    <TextView
+                    <ImageView
+                        android:layout_width="134dp"
+                        android:layout_height="93dp"
+                        android:layout_alignParentEnd="true"
+                        android:adjustViewBounds="true"
+                        android:cropToPadding="true"
+
+                        android:src="@drawable/ballsports_cdcpd">
+
+                    </ImageView>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Title"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Title: "
+                            style="@style/modifiedEditText"
+                            android:paddingEnd="5dp"
+                            android:textSize="20dp"
+                            android:textColor="#5b7b7d"
+                            android:textStyle="bold"
+                            android:background="?attr/editTextBackground" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/titleText"
+                            style="@style/modifiedEditText"
+                            android:textSize="20dp"
+                            android:textColor="#5b7b7d"
+                            android:background="?attr/editTextBackground"
+
+                            />
+
+                    </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sport: "
                         style="@style/modifiedEditText"
-                        android:id="@+id/titleText"
-
-                        android:padding="20dp"
-                        android:textSize="15dp"
+                        android:paddingEnd="5dp"
+                        android:textSize="20dp"
                         android:textColor="#5b7b7d"
-                        android:background="?attr/editTextBackground"
-
-                        >
-
-                    </TextView>
+                        android:textStyle="bold"
+                        android:background="?attr/editTextBackground" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/sportText"
-                        android:text="Sport"
                         style="@style/modifiedEditText"
-                        android:padding="20dp"
-                        android:textSize="15dp"
+                        android:textSize="20dp"
                         android:textColor="#5b7b7d"
                         android:background="?attr/editTextBackground"
-                        >
 
-                    </TextView>
+                         />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Location: "
+                        style="@style/modifiedEditText"
+                        android:paddingEnd="5dp"
+                        android:textSize="20dp"
+                        android:textColor="#5b7b7d"
+                        android:textStyle="bold"
+                        android:background="?attr/editTextBackground" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Location"
+                        android:layout_height="wrap_content"
                         android:id="@+id/locationText"
                         style="@style/modifiedEditText"
-                        android:padding="20dp"
-                        android:textSize="15dp"
+                        android:textSize="20dp"
                         android:textColor="#5b7b7d"
-                        android:background="?attr/editTextBackground">
+                        android:background="?attr/editTextBackground"
+                         />
 
+                </LinearLayout>
 
-                    </TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Date"
+                        android:layout_height="wrap_content"
+                        android:text="Date: "
                         style="@style/modifiedEditText"
-                        android:padding="20dp"
+                        android:paddingEnd="5dp"
+                        android:textSize="20dp"
+                        android:textColor="#5b7b7d"
+                        android:textStyle="bold"
+                        android:background="?attr/editTextBackground" />
+
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:id="@+id/dateText"
-                        android:textSize="15dp"
+                        style="@style/modifiedEditText"
+                        android:textSize="20dp"
                         android:textColor="#5b7b7d"
-                        android:background="?attr/editTextBackground">
+                        android:background="?attr/editTextBackground"
+                      />
+                </LinearLayout>
 
 
-                    </TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Current Player Count: "
+                        android:layout_height="wrap_content"
+                        android:text="Player Count: "
                         style="@style/modifiedEditText"
-                        android:padding="20dp"
-                        android:textSize="15dp"
-                        android:id="@+id/actualPlayerCountText"
+                        android:paddingEnd="5dp"
+                        android:textSize="20dp"
                         android:textColor="#5b7b7d"
-                        android:background="?attr/editTextBackground">
+                        android:textStyle="bold"
+                        android:background="?attr/editTextBackground" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/actualPlayerCountText"
+                        style="@style/modifiedEditText"
+                        android:textSize="20dp"
+                        android:textColor="#5b7b7d"
+                        android:background="?attr/editTextBackground"
+                         />
 
-                    </TextView>
+                </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -115,10 +203,7 @@
                             android:text="Join Game"
                             android:id="@+id/joinGameButton"
                             android:inputType="text"
-                            android:typeface="normal"
-                            >
-
-
+                            android:typeface="normal">
                         </Button>
 
                         <Button
@@ -136,21 +221,12 @@
                         </Button>
                     </LinearLayout>
 
-                </LinearLayout>
 
 
 
-
-
-
-
-            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-
-
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
     </ScrollView>
-
-
-
 </RelativeLayout>

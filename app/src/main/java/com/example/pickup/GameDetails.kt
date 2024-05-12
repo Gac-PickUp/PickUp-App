@@ -58,10 +58,10 @@ class GameDetailsActivity : AppCompatActivity() {
 
         binding.actualPlayerCountText.text = playerCountString
 
-        var playerinGame = playerInGame()
+        var playerInGame = playerInGame()
 
         binding.joinGameButton.setOnClickListener { view ->
-            if (playerinGame){
+            if (playerInGame){
                 Toast.makeText(this, "Player is already in the game", Toast.LENGTH_SHORT).show()
             }
             else{
@@ -87,7 +87,7 @@ class GameDetailsActivity : AppCompatActivity() {
                         .addOnSuccessListener { documentReference ->
                             Toast.makeText(this, "Player joined successfully", Toast.LENGTH_SHORT)
                                 .show()
-                            playerinGame = true
+                            playerInGame = true
                             if (maxPlayers != null) {
                                 updatePlayerCount(maxPlayers.toInt())
                             }
@@ -105,20 +105,18 @@ class GameDetailsActivity : AppCompatActivity() {
         binding.leaveGameButton.setOnClickListener { view ->
 
 
-            if(playerinGame){
+            if(playerInGame){
                 val documentRef = db.collection("games").document("game1").collection("playerIDs").document(
                     uid.toString()
                 )
                 val playerRef = uid?.let { db.collection("players").document(it).collection("gamesIn").document("game1") }
-                if (playerRef != null) {
-                    playerRef.delete()
-                }
+                playerRef?.delete()
 
                 documentRef.delete()
                     .addOnSuccessListener { documentReference ->
                         Toast.makeText(this, "Player removed successfully", Toast.LENGTH_SHORT)
                             .show()
-                        playerinGame = false
+                        playerInGame = false
                         if (maxPlayers != null) {
                             updatePlayerCount(maxPlayers.toInt())
                         }
