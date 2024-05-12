@@ -165,7 +165,7 @@ class GameDetailsActivity : AppCompatActivity() {
                 Log.d(TAG, "Count: ${snapshot.count}")
                 binding.actualPlayerCountText.text = "${snapshot.count}/" + maxPlayers
             } else {
-                Log.d(TAG, "Count failed: ", task.getException())
+                Log.d(TAG, "Count failed: ", task.exception)
             }
 
 
