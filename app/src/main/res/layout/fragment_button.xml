@@ -1,0 +1,33 @@
+<!-- fragment_button.xml -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_gravity="bottom"
+    android:background="@color/black"
+    >
+
+    <Button
+        android:id="@+id/createGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="@string/create_game_text"
+        />
+
+    <Button
+        android:id="@+id/myGamesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="@string/my_games"
+        android:layout_marginStart="16dp" />
+
+    <Button
+        android:id="@+id/allGamesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="@string/all_games"
+        android:layout_marginStart="16dp" />
+
+</LinearLayout>

@@ -8,7 +8,9 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isNotEmpty
 import com.example.pickup.databinding.ActivityCreateGameBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -17,11 +19,11 @@ import java.util.Locale
 
 class CreateGameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateGameBinding
-    var hour: Int = 0
-    var minute: Int = 0
+    private var hour: Int = 0
+    private var minute: Int = 0
     private val calendar = Calendar.getInstance()
 
-    val db = Firebase.firestore
+    private val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -42,30 +44,80 @@ class CreateGameActivity : AppCompatActivity() {
 
         val groupsArrayAdapter = ArrayAdapter(this, R.layout.activity_dropdown_item, groupsList)
 
-        val groupsAutocomplete = findViewById<AutoCompleteTextView>(R.id.chooseTeamAutoComplete)
+        //val groupsAutocomplete = findViewById<AutoCompleteTextView>(R.id.chooseTeamAutoComplete)
 
-        groupsAutocomplete.setAdapter(groupsArrayAdapter)
+        //groupsAutocomplete.setAdapter(groupsArrayAdapter)
 
 
 
-        binding.createGameButton.setOnClickListener{view ->
+        binding.createGameButton.setOnClickListener{
+
+
             val gameInfo = hashMapOf(
+                "title" to binding.titleText.text.toString(),
                 "sport" to binding.autoCompleteTextView.text.toString(),
                 "location" to binding.locationText.text.toString(),
                 "minPlayers" to binding.minPlayersText.text.toString().toIntOrNull(),
                 "maxPlayers" to binding.maxPlayersText.text.toString().toIntOrNull(),
                 "date" to binding.dateButton.text.toString(),
                 "time" to binding.timeButton.text.toString(),
-                "team" to binding.chooseTeamAutoComplete.text.toString()
+               // "team" to binding.chooseTeamAutoComplete.text.toString()
             )
+
+           // val minPlayers:Int = binding.minPlayersText.toString().toInt()
+           // val maxPlayers:Int = binding.maxPlayersText.toString().toInt()
+
+
 
             db.collection("games")
                 .add(gameInfo)
-                .addOnSuccessListener { documentReference ->
-                    Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, ViewGameActivity::class.java))
+                .addOnSuccessListener {
+                    val minPlayers: Int? = binding.minPlayersText.text.toString().toIntOrNull()
+                    val maxPlayers: Int? = binding.maxPlayersText.text.toString().toIntOrNull()
+
+                    if(minPlayers != null) {
+                        if (minPlayers > maxPlayers!!){
+                            // Toast.makeText(this, "Number of min players can't be greater than max players", Toast.LENGTH_SHORT).show()
+
+                            val dialogView = layoutInflater.inflate(R.layout.min_player_message, null)
+
+                            // Create a dialog and set its content view
+                            val builder = AlertDialog.Builder(this)
+                            builder.setView(dialogView)
+                            val dialog = builder.create()
+
+                            // Show the dialog
+                            dialog.show()
+
+                        }
+
+                    }
+
+                    else if (binding.autoCompleteTextView.text.isNotEmpty() && binding.locationText.text.isNotEmpty()
+                        && binding.minPlayersText.text.isNotEmpty()&& binding.titleText.text.isNotEmpty() &&
+                        binding.maxPlayersText.text.isNotEmpty() && binding.dateButton.text.isNotEmpty() &&
+                        binding.timeButton.text.isNotEmpty()) {
+
+                        Toast.makeText(this, "Game Created Successfully", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, ViewGameActivity::class.java))
+                    }
+
+
+
+                    else{
+                        val dialogView = layoutInflater.inflate(R.layout.fill_create_game_form, null)
+
+                        // Create a dialog and set its content view
+                        val builder = AlertDialog.Builder(this)
+                        builder.setView(dialogView)
+                        val dialog = builder.create()
+
+                        // Show the dialog
+                        dialog.show()
+                    }
+
                 }
-                .addOnFailureListener { e ->
+                .addOnFailureListener {
                     Toast.makeText(this, "Failed to create game", Toast.LENGTH_SHORT).show()
                 }
         }
@@ -82,7 +134,6 @@ class CreateGameActivity : AppCompatActivity() {
 
             val c = Calendar.getInstance()
 
-
             // our day, month and year.
             val year = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
@@ -92,7 +143,7 @@ class CreateGameActivity : AppCompatActivity() {
             val datePickerDialog = DatePickerDialog(
                 // on below line we are passing context.
                 this,
-                { view, year, monthOfYear, dayOfMonth ->
+                { _, year, monthOfYear, dayOfMonth ->
                     // on below line we are setting
                     // date to our text view.
                     binding.dateButton.text =
@@ -111,7 +162,6 @@ class CreateGameActivity : AppCompatActivity() {
 
     }
     fun popTimePicker(view: View) {
-
 
         val onTimeSetListener = TimePickerDialog.OnTimeSetListener { _, selectedHour, selectedMinute ->
             hour = selectedHour

@@ -12,16 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PickUp"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".SingleGameViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UserGamesAdaptor"
+            android:exported="false" />
+        <activity
+            android:name=".UserGame"
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".GameDetailsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PickUp" />
         <activity
             android:name=".ViewGameActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".ViewGameActivity"
-            android:exported="true" />
-
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".PasswordResetActivity"
             android:exported="true"
