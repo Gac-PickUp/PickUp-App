@@ -93,7 +93,7 @@ class CreateGameActivity : AppCompatActivity() {
 
                     }
 
-                    else if (binding.autoCompleteTextView.text.isNotEmpty() && binding.locationText.text.isNotEmpty()
+                    if (binding.autoCompleteTextView.text.isNotEmpty() && binding.locationText.text.isNotEmpty()
                         && binding.minPlayersText.text.isNotEmpty()&& binding.titleText.text.isNotEmpty() &&
                         binding.maxPlayersText.text.isNotEmpty() && binding.dateButton.text.isNotEmpty() &&
                         binding.timeButton.text.isNotEmpty()) {
